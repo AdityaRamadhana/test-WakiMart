@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anagram</title>
+  </head>
+  <body>
+    <div class="container">
+      <label for="inputPertama">Masukkan Kata Pertama</label><br />
+      <input type="text" id="inputPertama" /><br /><br />
+      <label for="inputKedua">Masukkan Kata kedua</label><br />
+      <input type="text" id="inputKedua" /><br /><br />
+      <input type="button" value="Check" id="btnCheck" onclick="myFunction()" /><br /><br />
+      <p id="result"></p>
+    </div>
+
+    <script>
+      function myFunction() {
+        const dataInputanPertama = document.querySelector("#inputPertama");
+        const dataInputanKedua = document.querySelector("#inputKedua");
+
+        const dataInputanPertamaValue = dataInputanPertama.value.toLowerCase();
+        const dataInputanKeduaValue = dataInputanKedua.value.toLowerCase();
+
+        const panjangInputPertama = dataInputanPertama.value.length;
+        const panjangInputKedua = dataInputanKedua.value.length;
+
+        var checkInputan = true;
+
+        const inputPertamaArr = dataInputanPertamaValue.split("");
+        const inputKeduaArr = dataInputanKeduaValue.split("");
+
+        if (dataInputanPertamaValue == "" || dataInputanKeduaValue == "") {
+          document.getElementById("result").innerHTML = "Mohon untuk mengisikan kata";
+        } else if (dataInputanPertamaValue.length != dataInputanKeduaValue.length) {
+          document.getElementById("result").innerHTML = "Kata : " + dataInputanKedua.value + " adalah BUKAN ANAGRAM dari kata : " + dataInputanPertama.value;
+        } else {
+          for (let i = 0; i < panjangInputPertama; i++) {
+            for (let j = 0; j < panjangInputKedua; j++) {
+              if (inputPertamaArr[i] == inputKeduaArr[j]) {
+                inputPertamaArr[i] = "*";
+                inputKeduaArr[j] = "*";
+              }
+            }
+          }
+
+          for (let i = 0; i < panjangInputPertama; i++) {
+            if (inputPertamaArr[i] != "*") {
+              checkInputan = false;
+            }
+          }
+
+          if (checkInputan) {
+            document.getElementById("result").innerHTML = "Kata : " + dataInputanKedua.value + " adalah ANAGRAM dari kata : " + dataInputanPertama.value;
+          } else {
+            document.getElementById("result").innerHTML = "Kata : " + dataInputanKedua.value + " adalah BUKAN ANAGRAM dari kata : " + dataInputanPertama.value;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

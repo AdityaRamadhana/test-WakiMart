@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test No. 1</title>
+  </head>
+  <body>
+    <div class="container">
+      <label for="inputPalindrom">Masukkan Kata</label><br />
+      <input type="text" id="inputan" /><br /><br />
+      <input type="button" value="Check" id="btnCheck" onclick="myFunction()" /><br /><br />
+      <p id="result"></p>
+    </div>
+
+    <script>
+      function myFunction() {
+        const dataInputan = document.querySelector("#inputan");
+        const dataInputanValue = dataInputan.value.toLowerCase();
+        const panjangInputan = dataInputanValue.length;
+        const panjangLoop = panjangInputan - 1;
+        var checkInputan = true;
+
+        for (let i = 0; i < panjangInputan / 2; i++) {
+          if (dataInputanValue.charAt(i) != dataInputanValue.charAt(panjangLoop - i)) {
+            checkInputan = false;
+          }
+          console.log(dataInputanValue.charAt(i));
+          console.log(dataInputanValue.charAt(panjangLoop - i));
+          console.log(checkInputan);
+        }
+
+        if (checkInputan) {
+          document.getElementById("result").innerHTML = "Kata " + dataInputan.value + " adalah kata palindrom";
+        } else {
+          document.getElementById("result").innerHTML = "Kata " + dataInputan.value + " adalah bukan kata palindrom";
+        }
+      }
+    </script>
+  </body>
+</html>
